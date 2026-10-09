@@ -6,6 +6,35 @@ swap at will, and may buy from the archive.
 
 > *Borrowed, beautifully.*
 
+## Preview
+
+**https://matthewhawkins.github.io/marchiv/**
+
+Deployed from `main` by `.github/workflows/deploy-preview.yml` on every push.
+It is a static export, so two things differ from a real deploy:
+
+- **No image optimization.** GitHub Pages can't run Next's optimizer, so
+  `images.unoptimized` is set and the originals are served — roughly 2.5MB a
+  page instead of ~400KB. Fine for review, not for launch.
+- **`basePath: /marchiv`.** `next/image` does *not* apply basePath to `src`
+  when the optimizer is off, which would 404 every photograph. Everything
+  pointing at `/public` therefore goes through `asset()` in `lib/asset.ts`.
+  Use it for any new image.
+
+Both behaviours are behind `GITHUB_PAGES=true`, so `next dev`, a normal
+`next build`, and any future deploy to a Node host are untouched. Build the
+export locally with:
+
+```bash
+GITHUB_PAGES=true npm run build   # -> out/
+```
+
+The preview is also marked `noindex, nofollow` — it is a public URL for a
+brand that has not launched. **Remove that when the real site goes live**
+(`isPreviewDeploy` in `lib/asset.ts`, consumed in `app/layout.tsx`).
+
+`docs/PLAN.md` is gitignored and deliberately not published.
+
 ## Status
 
 The landing page is built. Everything else is planned but not implemented —
