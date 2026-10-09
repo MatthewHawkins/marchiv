@@ -1,0 +1,14 @@
+/* The brand's single shape. The top arc is a true semicircle whose radius is
+   half the element's width, so it stays correct at any size:
+     horizontal radius = 50% of width
+     vertical radius   = width/2, expressed as 50% x (width/height) of height */
+.arch {
+  position: relative;
+  aspect-ratio: var(--arch-ar, 1);
+  overflow: hidden;
+  /* Override with --arch-bg from the consuming class; a custom property
+     can't lose a specificity tie the way a `background` rule can. */
+  background: var(--arch-bg, var(--vault-cream));
+  border-radius: 50% 50% 0 0 / calc(50% * var(--arch-ar, 1))
+    calc(50% * var(--arch-ar, 1)) 0 0;
+}

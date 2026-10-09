@@ -1,0 +1,151 @@
+.hero {
+  padding: 2.5rem var(--gutter) 0;
+}
+
+.frame {
+  position: relative;
+  max-width: var(--max-page);
+  margin-inline: auto;
+}
+
+.arch {
+  /* 1296 x 880 at the 1440 design width. */
+  --arch-ar: 1.4727;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 38%;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(42 32 27 / 0) 45%,
+    rgb(42 32 27 / 0.55) 100%
+  );
+}
+
+/* Overlaid on the arch at the designed sizes. */
+.content {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--gap-xl);
+  padding: 0 clamp(1.5rem, 6.67vw, 6rem) clamp(2rem, 5vw, 4.5rem);
+  color: var(--on-dark);
+}
+
+.statement {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.kicker {
+  color: var(--on-dark-cream);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: -0.01em;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+/* Wide enough to hold both buttons on one line (456px); the paragraph keeps
+   the designed 380px measure of its own. */
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-s);
+  max-width: 29rem;
+  padding-bottom: 0.625rem;
+}
+
+.lede {
+  font-size: var(--t-body-lg);
+  line-height: var(--lh-body);
+  max-width: 380px;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
+}
+
+@media (max-width: 1023px) {
+  .arch {
+    --arch-ar: 0.95;
+  }
+  .content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-s);
+  }
+  .aside {
+    max-width: 44ch;
+    padding-bottom: 0;
+  }
+  /* The stacked block reaches higher up the arch than the desktop layout
+     does, so the scrim starts earlier to hold the headline. */
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(42 32 27 / 0) 10%,
+      rgb(42 32 27 / 0.5) 42%,
+      rgb(42 32 27 / 0.8) 100%
+    );
+  }
+}
+
+/* Below 768 the copy leaves the photograph entirely and sets on plaster. */
+@media (max-width: 767px) {
+  .arch {
+    --arch-ar: 0.8;
+  }
+  .scrim {
+    display: none;
+  }
+  .content {
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-s);
+    padding: var(--gap-m) 0 0;
+    color: var(--espresso);
+  }
+  .kicker {
+    color: var(--ink-brass);
+  }
+  .lede {
+    color: var(--ink-secondary);
+  }
+  /* Two classes deep so these win over the on-dark variants regardless of
+     the order the two CSS modules land in the bundle. */
+  .actions .actionPrimary {
+    background: var(--espresso);
+    color: var(--plaster);
+  }
+  .actions .actionPrimary:hover {
+    background: var(--ink-secondary);
+  }
+  .actions .actionSecondary {
+    border-color: var(--espresso);
+    color: var(--espresso);
+  }
+  .actions .actionSecondary:hover {
+    background: var(--vault-cream);
+  }
+}

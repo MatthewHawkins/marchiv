@@ -1,0 +1,25 @@
+/* The brand's "voice" link: Cormorant italic, underlined, generous offset. */
+.link {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--t-link);
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: from-font;
+}
+
+.onPlaster {
+  color: var(--espresso);
+}
+.onPlaster:hover {
+  color: var(--ink-brass);
+}
+
+.onGreen {
+  color: var(--plaster);
+}
+.onGreen:hover {
+  color: var(--lit-brass);
+}

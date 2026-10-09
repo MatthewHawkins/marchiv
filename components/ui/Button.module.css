@@ -1,0 +1,49 @@
+.button {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--t-label);
+  font-weight: 400;
+  letter-spacing: var(--tr-button);
+  text-transform: uppercase;
+  line-height: 1;
+  /* Transparent border on every variant so filled and outlined buttons
+     occupy identical boxes and sit on the same baseline. */
+  border: var(--hairline) solid transparent;
+  padding: calc(1.125rem - var(--hairline)) calc(2rem - var(--hairline));
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* --- On plaster ---------------------------------------------------------- */
+.primary {
+  background: var(--espresso);
+  color: var(--plaster);
+}
+.primary:hover {
+  background: var(--ink-secondary);
+}
+
+.secondary {
+  border-color: var(--espresso);
+  color: var(--espresso);
+}
+.secondary:hover {
+  background: var(--vault-cream);
+}
+
+/* --- On dark photography ------------------------------------------------- */
+.onDarkPrimary {
+  background: var(--on-dark);
+  color: var(--espresso);
+}
+.onDarkPrimary:hover {
+  background: var(--on-dark-cream);
+}
+
+.onDarkSecondary {
+  border-color: var(--on-dark);
+  color: var(--on-dark);
+}
+.onDarkSecondary:hover {
+  background: rgb(251 246 239 / 0.14);
+}

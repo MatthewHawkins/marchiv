@@ -1,0 +1,88 @@
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: var(--max-shell);
+  margin-inline: auto;
+  padding: 1.75rem var(--gutter);
+}
+
+.group {
+  display: flex;
+  gap: 2.25rem;
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.end {
+  justify-content: flex-end;
+}
+
+.link:hover {
+  color: var(--ink-brass);
+}
+
+/* The handoff: nav links carry no underline; APPLY is underlined. */
+.apply {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.locale {
+  color: var(--ink-muted);
+}
+
+.wordmarkLink:hover {
+  color: var(--ink-brass);
+}
+
+/* --- Collapsed nav, below the designed breakpoint ------------------------ */
+.toggle {
+  display: none;
+  justify-self: end;
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.toggle:hover {
+  color: var(--ink-brass);
+}
+
+.panel {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .nav {
+    padding-block: 1.25rem;
+  }
+  /* The hidden link groups leave no grid cells behind, so the wordmark and
+     toggle must be placed explicitly to keep the wordmark centred. */
+  .group {
+    display: none;
+  }
+  .wordmarkLink {
+    grid-column: 2;
+  }
+  .toggle {
+    display: block;
+    grid-column: 3;
+  }
+  .panel {
+    display: grid;
+    gap: 1.25rem;
+    max-width: var(--max-shell);
+    margin-inline: auto;
+    padding: 0 var(--gutter) 2rem;
+    font-size: var(--t-label);
+    letter-spacing: var(--tr-nav);
+    text-transform: uppercase;
+    border-bottom: var(--hairline) solid var(--rule);
+  }
+  .panel[hidden] {
+    display: none;
+  }
+}

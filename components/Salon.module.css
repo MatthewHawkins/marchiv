@@ -1,0 +1,93 @@
+.section {
+  background: var(--bottle);
+  color: var(--plaster);
+}
+
+/* The gutter lives on .inner so the copy's left edge lands on the same
+   vertical as every other section's content, at any viewport width. The
+   528px image column and the 72px copy gap reproduce the 1440 design
+   measurements exactly. */
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 528px);
+  max-width: var(--max-shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: var(--section-y) var(--gutter) var(--section-y) 0;
+}
+
+.kicker {
+  color: var(--lit-brass);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section-display);
+  line-height: var(--lh-display);
+  /* The handoff says 560px, but "Come under the vault." sets to 617px at
+     72px Cormorant — 560 forces a third line and breaks the couplet. */
+  max-width: 44rem;
+  text-wrap: pretty;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: var(--lh-body-loose);
+  max-width: 440px;
+  color: var(--on-green);
+  text-wrap: pretty;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-l);
+  padding-top: 0.5rem;
+}
+
+/* The arch is bottom-flush so it reads as rising out of the band's edge. */
+.figure {
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--section-y);
+}
+
+.arch {
+  --arch-ar: 0.825;
+  width: 100%;
+  --arch-bg: var(--bottle-deep);
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 70%;
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .copy {
+    padding-right: 0;
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .figure {
+    padding-top: 0;
+    justify-content: center;
+  }
+  .arch {
+    max-width: 528px;
+  }
+}

@@ -1,0 +1,34 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  min-height: 52vh;
+  justify-content: center;
+  max-width: var(--max-shell);
+  margin-inline: auto;
+  padding: var(--section-y) var(--gutter);
+}
+
+.kicker {
+  color: var(--ink-brass);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section-display);
+  line-height: var(--lh-display);
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.body {
+  font-size: var(--t-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  max-width: 46ch;
+  text-wrap: pretty;
+}

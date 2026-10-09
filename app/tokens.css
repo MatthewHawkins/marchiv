@@ -1,0 +1,108 @@
+/* ==========================================================================
+   MARCHIV — Brand Foundations
+   Single source of truth, transcribed from the design handoff.
+   Change a value here and it propagates everywhere.
+
+   This is the complete foundation, not only what the landing page consumes.
+   The Malá Strana Stucco palette is reserved for packaging and campaign work
+   and is deliberately unused on the site; several scale steps are waiting on
+   the pages that need them.
+   ========================================================================== */
+
+:root {
+  /* ---- Palette · Plaster & Brass (primary, the vaulted interior) -------- */
+  --plaster: #f3ede4;        /* page background */
+  --vault-cream: #eae1d3;    /* secondary surface, tinted bands */
+  --limestone: #bfb4a5;      /* subtle neutral */
+  --oak: #b08657;            /* warm neutral */
+  --brass: #a8884e;          /* hairlines, numerals, outlines */
+  --espresso: #2a201b;       /* text, primary button fill */
+
+  --ink-secondary: #4a3e36;
+  --ink-muted: #6e6157;
+  --ink-brass: #7d6334;      /* deep brass text */
+  --rule: #d9cdbb;           /* list-row rules */
+
+  /* ---- Palette · Salon Vert (accent, the garden salon) ------------------ */
+  --bottle: #2e4636;
+  --bottle-deep: #243a2c;    /* arch backing inside the green band */
+  --fern: #5e7562;
+  --lit-brass: #c8aa6e;      /* brass on dark green */
+  --cognac: #7a4a2e;
+  --on-green: #e3eadf;       /* body copy on green */
+
+  /* ---- Palette · Malá Strana Stucco (campaign & packaging only) --------- */
+  --stucco: #c9735c;
+  --salmon-render: #e2a088;
+  --ochre: #d4b26a;
+  --cobble: #6f6466;
+
+  /* ---- Light inks (on photography / dark fields) ------------------------ */
+  --on-dark: #fbf6ef;
+  --on-dark-cream: #e7d6b4;  /* cream highlight on dark */
+
+  /* ---- Status ---------------------------------------------------------- */
+  --status-salon-bg: #e3eadf;
+  --status-salon-ink: #2e4636;
+  --status-loan-bg: #f2ddd2;
+  --status-loan-ink: #8a3f2e;
+
+  /* ---- Type families (bound to next/font in app/layout.tsx) ------------- */
+  --font-display: var(--font-bodoni), "Bodoni Moda", "Didot", serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), "Jost", "Futura", system-ui, sans-serif;
+
+  /* ---- Type scale -------------------------------------------------------
+     Handoff specifies a 1440px design width. Values below collapse to the
+     specified desktop size at >=1440 and scale down fluidly beneath it. */
+  --t-hero: clamp(3.25rem, 8.34vw, 7.5rem);        /* 52 -> 120px */
+  --t-section-display: clamp(2.5rem, 5vw, 4.5rem); /* 40 -> 72px  */
+  --t-section: clamp(2.25rem, 3.9vw, 3.5rem);      /* 36 -> 56px  */
+  --t-title: clamp(1.75rem, 3.05vw, 2.75rem);      /* 28 -> 44px  */
+  --t-card: clamp(1.375rem, 2.08vw, 1.875rem);     /* 22 -> 30px  */
+  --t-bag: clamp(1.25rem, 1.8vw, 1.625rem);        /* 20 -> 26px  */
+  --t-link: clamp(1.1875rem, 1.53vw, 1.375rem);    /* 19 -> 22px  */
+  --t-numeral: clamp(2.5rem, 3.9vw, 3.5rem);       /* 40 -> 56px  */
+  --t-body-lg: clamp(1rem, 1.18vw, 1.0625rem);     /* 16 -> 17px  */
+  --t-body: 0.9375rem;                             /* 15px        */
+  --t-meta: 0.8125rem;                             /* 13px        */
+  --t-label: 0.75rem;                              /* 12px        */
+  --t-label-sm: 0.6875rem;                         /* 11px        */
+
+  --lh-hero: 0.92;
+  --lh-display: 1.02;
+  --lh-tight: 1.1;
+  --lh-body: 1.65;
+  --lh-body-loose: 1.7;
+
+  --tr-wordmark: 0.22em;   /* tracking */
+  --tr-nav: 0.24em;
+  --tr-button: 0.28em;
+  --tr-kicker: 0.36em;
+  --tr-status: 0.2em;
+
+  /* ---- Space ----------------------------------------------------------- */
+  --gutter: clamp(1.5rem, 5vw, 4.5rem);            /* 24 -> 72px  */
+  --section-y: clamp(3.5rem, 6.67vw, 6rem);        /* 56 -> 96px  */
+  --gap-xs: 0.875rem;  /* 14 */
+  --gap-s: 1.5rem;     /* 24 */
+  --gap-m: 2rem;       /* 32 */
+  --gap-l: 2.5rem;     /* 40 */
+  --gap-xl: 3rem;      /* 48 */
+  --gap-2xl: 3.5rem;   /* 56 */
+
+  --max-page: 1296px;  /* hero arch width at the 1440 design size */
+  /* Use --max-page on an element nested inside a gutter-padded parent, and
+     --max-shell on one that carries the gutter itself. Mixing them up
+     indents the content twice. */
+  --max-shell: calc(var(--max-page) + 2 * var(--gutter));
+
+  /* ---- Shape ------------------------------------------------------------
+     No border radius anywhere EXCEPT the arch. No shadows. */
+  --hairline: 1px;
+  --hairline-thick: 1.5px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 180ms;
+}

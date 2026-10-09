@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+/* 3:4 arch — the archive's row of windows. */
+.frame {
+  --arch-ar: 0.75;
+  --arch-bg: var(--plaster);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.ref {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  line-height: 1;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--t-bag);
+  line-height: var(--lh-tight);
+  text-wrap: pretty;
+}
+
+.detail {
+  font-size: var(--t-meta);
+  color: var(--ink-secondary);
+  line-height: 1.4;
+}

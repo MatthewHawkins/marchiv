@@ -1,0 +1,56 @@
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-xl);
+  padding: var(--section-y) var(--gutter) clamp(3.25rem, 6.1vw, 5.5rem);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+/* The step niche: an outlined arch, 120 x 160, with a Roman numeral. */
+.niche {
+  --arch-ar: 0.75;
+  width: 120px;
+  background: none;
+  border: var(--hairline) solid var(--brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.numeral {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-numeral);
+  line-height: 1;
+  color: var(--brass);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--t-card);
+  line-height: var(--lh-tight);
+}
+
+.body {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  max-width: 340px;
+  text-wrap: pretty;
+}
+
+@media (max-width: 899px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap-l);
+  }
+  .body {
+    max-width: 48ch;
+  }
+}

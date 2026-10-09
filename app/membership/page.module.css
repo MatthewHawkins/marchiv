@@ -1,0 +1,434 @@
+/* Bands run full width; their inner wrapper carries the page measure, so
+   every left edge on the page lands on one vertical. */
+.band {
+  padding: var(--section-y) var(--gutter);
+}
+
+.inner {
+  max-width: var(--max-page);
+  margin-inline: auto;
+}
+
+.cream {
+  background: var(--vault-cream);
+}
+
+.ruled {
+  border-top: var(--hairline) solid var(--espresso);
+}
+
+/* --- Opening statement ---------------------------------------------------- */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 44rem;
+}
+
+.kicker {
+  color: var(--ink-brass);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section-display);
+  line-height: var(--lh-display);
+  text-wrap: balance;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.lede {
+  font-size: var(--t-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+/* --- Section furniture ---------------------------------------------------- */
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: var(--gap-xl);
+  max-width: 44rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section);
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+.sectionNote {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  max-width: 56ch;
+  text-wrap: pretty;
+}
+
+/* --- The three closets, each shown as the room it is named for ------------ */
+.closets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap-xl);
+  row-gap: 0.875rem;
+}
+
+/* One row of three, so names, allowances and prices sit on shared baselines
+   whatever the copy length. Guarded: without subgrid each card flows alone. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 900px) {
+    /* Two classes deep so this beats .closet's flex fallback regardless of
+       the order the rules land in the bundle. */
+    .closets > .closet {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 5;
+    }
+  }
+}
+
+.closet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.closetArch {
+  --arch-ar: 0.75;
+}
+
+.closetImage {
+  object-fit: cover;
+}
+
+.closetName {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.closetDescriptor {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  color: var(--ink-brass);
+}
+
+.closetAllowance {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  text-wrap: pretty;
+}
+
+.closetPrice {
+  font-size: var(--t-body);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.875rem;
+  border-top: var(--hairline) solid var(--brass);
+}
+
+/* --- Comparison ----------------------------------------------------------- */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-meta);
+  min-width: 36rem;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.875rem 1.25rem 0.875rem 0;
+  border-bottom: var(--hairline) solid var(--limestone);
+  line-height: 1.5;
+}
+
+.table th:last-child,
+.table td:last-child {
+  padding-right: 0;
+}
+
+.table thead th {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  border-bottom-color: var(--espresso);
+  padding-bottom: 0.75rem;
+}
+
+.table thead th:first-child {
+  font-family: var(--font-sans);
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.table tbody th {
+  font-weight: 400;
+  color: var(--ink);
+  width: 28%;
+}
+
+.table td {
+  color: var(--ink-secondary);
+}
+
+.priceRow th,
+.priceRow td {
+  border-bottom: 0;
+  padding-top: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.priceRow td {
+  color: var(--espresso);
+}
+
+.footnote {
+  padding-top: var(--gap-l);
+  font-size: var(--t-meta);
+  color: var(--ink-muted);
+  max-width: 56ch;
+  line-height: var(--lh-body);
+}
+
+/* --- The house speaks ----------------------------------------------------- */
+.quote {
+  position: relative;
+  overflow: hidden;
+  background: var(--espresso);
+}
+
+.quoteImage {
+  object-fit: cover;
+  object-position: 50% 64%;
+}
+
+.quoteScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(42 32 27 / 0.62) 0%,
+    rgb(42 32 27 / 0.5) 55%,
+    rgb(42 32 27 / 0.7) 100%
+  );
+}
+
+.quoteInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-s);
+  text-align: center;
+  min-height: clamp(20rem, 33vw, 30rem);
+  padding-block: var(--section-y);
+}
+
+.quoteKicker {
+  color: var(--on-dark-cream);
+}
+
+.quoteText {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--t-section);
+  line-height: 1.15;
+  color: var(--on-dark);
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+/* --- In every membership -------------------------------------------------- */
+.included {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap-xl);
+}
+
+.includedItem {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: 1.5rem 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+
+.includedTitle {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: var(--lh-tight);
+}
+
+.includedBody {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  text-wrap: pretty;
+}
+
+/* --- Questions ------------------------------------------------------------ */
+.questions {
+  display: grid;
+  max-width: 48rem;
+}
+
+.question {
+  padding: 1.5rem 0;
+  border-top: var(--hairline) solid var(--rule);
+}
+
+.question:last-child {
+  border-bottom: var(--hairline) solid var(--rule);
+}
+
+.questionTitle {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: var(--lh-tight);
+  margin-bottom: 0.5rem;
+}
+
+.questionBody {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  text-wrap: pretty;
+}
+
+/* --- Closing invitation --------------------------------------------------- */
+.invitation {
+  background: var(--bottle);
+  color: var(--plaster);
+}
+
+.invitationInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  max-width: var(--max-shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.invitationCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--gap-s);
+  padding: var(--section-y) var(--gutter) var(--section-y) 0;
+}
+
+.invitationKicker {
+  color: var(--lit-brass);
+}
+
+.invitationHeadline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section);
+  line-height: var(--lh-display);
+  max-width: 18ch;
+}
+
+.invitationHeadline em {
+  font-style: italic;
+}
+
+.invitationBody {
+  font-size: 1rem;
+  line-height: var(--lh-body-loose);
+  color: var(--on-green);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+.invitationActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xs);
+  padding-top: 0.5rem;
+}
+
+/* Bottom-flush, so the arch rises out of the band's edge. */
+.invitationFigure {
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--section-y);
+}
+
+.invitationArch {
+  --arch-ar: 0.8;
+  width: 100%;
+  --arch-bg: var(--bottle-deep);
+}
+
+.invitationImage {
+  object-fit: cover;
+  object-position: 50% 78%;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .included {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .invitationInner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .invitationCopy {
+    padding-right: 0;
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .invitationFigure {
+    padding-top: 0;
+    justify-content: center;
+  }
+  .invitationArch {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 899px) {
+  .closets {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--gap-xl);
+  }
+  .closetArch {
+    --arch-ar: 1.1;
+  }
+}
+
+@media (max-width: 599px) {
+  .included {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .closetArch {
+    --arch-ar: 0.85;
+  }
+}

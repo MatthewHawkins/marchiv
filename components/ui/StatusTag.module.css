@@ -1,0 +1,19 @@
+/* Bare tracked text in the card's meta row, as the homepage mock sets it.
+   The handoff also specs a tinted pill (6px 12px padding, --status-*-bg)
+   for listing and detail views — add it when those pages land. */
+.tag {
+  font-family: var(--font-sans);
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-status);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.inSalon {
+  color: var(--status-salon-ink);
+}
+
+.onLoan {
+  color: var(--status-loan-ink);
+}

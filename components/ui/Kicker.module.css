@@ -1,0 +1,10 @@
+/* Tracked uppercase label that opens most sections. Colour is set by the
+   consuming section, since it changes with the field it sits on. */
+.kicker {
+  font-family: var(--font-sans);
+  font-size: var(--t-label);
+  font-weight: 400;
+  letter-spacing: var(--tr-kicker);
+  text-transform: uppercase;
+  line-height: 1;
+}

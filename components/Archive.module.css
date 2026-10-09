@@ -1,0 +1,78 @@
+.section {
+  background: var(--vault-cream);
+  padding: clamp(3rem, 5.56vw, 5rem) var(--gutter);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xl);
+  max-width: var(--max-page);
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--gap-m);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.kicker {
+  color: var(--ink-brass);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--gap-m);
+  row-gap: var(--gap-xs);
+}
+
+/* On the designed layout the four cards share one row, so their meta rows,
+   names and details sit on common baselines even when a long house name
+   wraps. Guarded: without subgrid the cards stay in their own flex flow. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 1024px) {
+    /* Qualified with .inner so it outranks the card's own display rule,
+       which lives in a different module and could otherwise win on order. */
+    .inner .grid > * {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 4;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--gap-l);
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-s);
+  }
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap-l);
+  }
+}
