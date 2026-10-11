@@ -70,7 +70,7 @@ export default function MembershipPage() {
             <div className={styles.closets}>
               {memberships.map((m, i) => (
                 <article key={m.tier} className={styles.closet}>
-                  <Arch className={styles.closetArch} data-reveal="arch">
+                  <Arch className={styles.closetArch}>
                     <Image
                       src={asset(m.image.src)}
                       alt={m.image.alt}
@@ -245,7 +245,7 @@ export default function MembershipPage() {
             </div>
 
             <div className={styles.invitationFigure}>
-              <Arch className={styles.invitationArch} data-reveal="arch">
+              <Arch className={styles.invitationArch}>
                 <Image
                   src={asset("/images/facade-cream.jpg")}
                   alt="The house on Mostecká, seen from the street"

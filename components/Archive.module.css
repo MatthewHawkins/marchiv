@@ -41,46 +41,19 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: var(--gap-m);
   row-gap: var(--gap-xs);
-  /* Fallback for narrow layouts, where the windows are uniform. */
   --arch-ar: 0.75;
 }
 
-/* Unequal window heights on a common sill. A row of four identical arches
-   reads as a product grid; four of differing height reads as a wall of
-   windows, which is what the archive is supposed to be. */
-@media (min-width: 1024px) {
-  .grid > *:nth-child(1) {
-    --arch-ar: 0.79;
-  }
-  .grid > *:nth-child(2) {
-    --arch-ar: 0.66;
-  }
-  .grid > *:nth-child(3) {
-    --arch-ar: 0.73;
-  }
-  .grid > *:nth-child(4) {
-    --arch-ar: 0.69;
-  }
-}
-
-/* On the designed layout the four cards share one row, so their meta rows,
-   names and details sit on common baselines even when a long house name
-   wraps. Guarded: without subgrid the cards stay in their own flex flow. */
+/* The four cards share one row, so their meta rows, names and details sit
+   on common baselines even when a long house name wraps to two lines.
+   Qualified with .inner so it outranks the card's own display rule, which
+   lives in a different module and could otherwise win on source order. */
 @supports (grid-template-rows: subgrid) {
   @media (min-width: 1024px) {
-    /* Qualified with .inner so it outranks the card's own display rule,
-       which lives in a different module and could otherwise win on order. */
     .inner .grid > * {
       display: grid;
       grid-template-rows: subgrid;
       grid-row: span 4;
-    }
-    /* The arch is the card's first child. Hanging it from the bottom of the
-       shared image row puts every sill on one line while the crowns differ.
-       Scoped to the subgrid context — in the flex fallback below, align-self
-       would act on the inline axis and shove the image sideways. */
-    .inner .grid > * > *:first-child {
-      align-self: end;
     }
   }
 }
@@ -100,6 +73,7 @@
 @media (max-width: 599px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--gap-l);
+    row-gap: var(--gap-xl);
+    --arch-ar: 0.85;
   }
 }

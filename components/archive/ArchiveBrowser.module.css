@@ -1,0 +1,359 @@
+/* --- Controls ------------------------------------------------------------
+   Filters sit along the top and read as navigation rather than as a second
+   interface. Active choices are stated in ink and underlined; everything
+   else recedes. One reset, and only once something is actually filtered. */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gap-xl);
+  padding-top: var(--gap-l);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  --rule-ink: var(--espresso);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+.filterLabel {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.125rem;
+}
+
+.choice {
+  font-family: var(--font-sans);
+  font-size: var(--t-meta);
+  line-height: 1.4;
+  color: var(--ink-muted);
+  text-underline-offset: 4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.choice:hover {
+  color: var(--ink-secondary);
+}
+
+.choice[aria-pressed="true"] {
+  color: var(--espresso);
+  text-decoration: underline;
+  text-decoration-color: var(--brass);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex: none;
+}
+
+.count {
+  font-size: var(--t-meta);
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.resetLink {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-brass);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.resetLink:hover {
+  color: var(--espresso);
+}
+
+.views {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+}
+
+.view {
+  color: var(--ink-muted);
+  transition: color var(--dur) var(--ease);
+}
+
+.view:hover {
+  color: var(--ink-secondary);
+}
+
+.view[aria-pressed="true"] {
+  color: var(--espresso);
+  text-decoration: underline;
+  text-decoration-color: var(--brass);
+  text-underline-offset: 5px;
+}
+
+.viewDivider {
+  color: var(--limestone);
+}
+
+.empty {
+  padding-block: clamp(3rem, 8vw, 6rem);
+  font-family: var(--font-serif);
+  font-size: var(--t-card);
+  line-height: var(--lh-tight);
+  color: var(--ink-secondary);
+  text-wrap: pretty;
+}
+
+/* --- Vitrine -------------------------------------------------------------
+   Three up, not four: larger plates, and each piece given room so it reads
+   as considered rather than stocked. */
+.vitrine {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap-xl);
+  row-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --arch-ar: 0.78;
+}
+
+/* --- Index ---------------------------------------------------------------
+   The register: a line per piece, and the piece itself held beside it. */
+.register {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(16rem, 26%, 23rem);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.ledger {
+  min-width: 0;
+}
+
+.ledgerHead,
+.row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(7rem, 1.1fr) minmax(0, 2.3fr) 6rem 10.5rem;
+  gap: 1.25rem;
+  align-items: baseline;
+}
+
+.ledgerHead {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-bottom: 0.875rem;
+  border-bottom: var(--hairline) solid var(--espresso);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  padding-block: 0.9375rem;
+  border-bottom: var(--hairline) solid var(--rule);
+  color: var(--ink-secondary);
+  transition: color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+/* The read line darkens and takes a brass edge, so the register tracks
+   where the eye is without anything moving. */
+.row[data-reading] {
+  color: var(--espresso);
+  box-shadow: inset 2px 0 0 var(--brass);
+}
+
+.rowRef {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+}
+
+.row[data-reading] .rowRef {
+  color: var(--ink-brass);
+}
+
+.rowHouse {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-status);
+  text-transform: uppercase;
+}
+
+.rowName {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.25;
+  color: var(--espresso);
+}
+
+.rowRetail,
+.numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.statusCol {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-status);
+  text-transform: uppercase;
+  text-align: right;
+  /* A wrapping status would make one row taller than the rest and break
+     the register's even rhythm. */
+  white-space: nowrap;
+  color: var(--status-salon-ink);
+}
+
+.statusCol[data-loan] {
+  color: var(--status-loan-ink);
+}
+
+.ledgerHead .statusCol,
+.ledgerHead .numeric {
+  color: var(--ink-muted);
+}
+
+/* The plate. Sticky, so it stays level with whatever line is being read. */
+.plate {
+  position: sticky;
+  top: clamp(3rem, 9vh, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-s);
+}
+
+.plateArch {
+  --arch-ar: 0.82;
+  --arch-bg: var(--vault-cream);
+}
+
+.plateImage {
+  object-fit: cover;
+  animation: plate-settle 420ms var(--ease-enter) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plateImage {
+    animation: none;
+  }
+}
+
+@keyframes plate-settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.plateMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.plateRef {
+  font-size: var(--t-label-sm);
+  letter-spacing: var(--tr-nav);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.plateName {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: var(--lh-tight);
+  text-wrap: pretty;
+}
+
+.plateDetail {
+  font-size: var(--t-meta);
+  color: var(--ink-secondary);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+@media (max-width: 1099px) {
+  .controls {
+    flex-direction: column;
+    gap: var(--gap-s);
+  }
+  .meta {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  /* The plate needs a column of its own to be worth keeping; below this the
+     register is just the register. */
+  .register {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .plate {
+    display: none;
+  }
+  .vitrine {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--gap-m);
+  }
+}
+
+@media (max-width: 899px) {
+  .ledgerHead {
+    display: none;
+  }
+  .row {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    row-gap: 0.25rem;
+  }
+  .rowName {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+  .rowRetail {
+    text-align: left;
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .statusCol {
+    text-align: right;
+  }
+}
+
+@media (max-width: 599px) {
+  .filter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.375rem;
+  }
+  .vitrine {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--gap-xl);
+    --arch-ar: 0.85;
+  }
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

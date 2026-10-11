@@ -1,0 +1,36 @@
+.main {
+  max-width: var(--max-shell);
+  margin-inline: auto;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--gutter) var(--section-y);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 46rem;
+}
+
+.kicker {
+  color: var(--ink-brass);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section-display);
+  line-height: var(--lh-display);
+  text-wrap: balance;
+}
+
+.headline em {
+  font-style: italic;
+}
+
+.lede {
+  font-size: var(--t-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-secondary);
+  max-width: 54ch;
+  text-wrap: pretty;
+}

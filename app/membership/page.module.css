@@ -79,19 +79,6 @@
   --arch-ar: 0.75;
 }
 
-/* The arches climb with the tier: Salon the lowest window, Trezor the
-   tallest, all three hung from one sill. The ladder is the information. */
-@media (min-width: 900px) {
-  .closets > *:nth-child(1) {
-    --arch-ar: 0.86;
-  }
-  .closets > *:nth-child(2) {
-    --arch-ar: 0.74;
-  }
-  .closets > *:nth-child(3) {
-    --arch-ar: 0.63;
-  }
-}
 
 /* One row of three, so names, allowances and prices sit on shared baselines
    whatever the copy length. Guarded: without subgrid each card flows alone. */
@@ -103,11 +90,6 @@
       display: grid;
       grid-template-rows: subgrid;
       grid-row: span 5;
-    }
-    /* Hang the unequal arches from a common sill. Scoped to the subgrid
-       context — in the flex fallback align-self works on the inline axis. */
-    .closets > .closet > *:first-child {
-      align-self: end;
     }
   }
 }

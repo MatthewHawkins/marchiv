@@ -46,6 +46,7 @@ Routes that exist:
 | Route         | State |
 | ------------- | ----- |
 | `/`           | Built — the homepage direction from the brand board |
+| `/archive`    | Built — the Register: a **Vitrine** (3-up editorial hang) and an **Index** (the archive as a register, with the piece held beside the line being read) |
 | `/membership` | Built — the three tiers shown as the rooms they're named for, a comparison, what's included, and the questions people ask |
 | anything else | Brand-styled 404 ("Not on the shelves"), so unbuilt links land somewhere deliberate rather than on a stock error page |
 
@@ -94,6 +95,29 @@ lib/
 public/images/      photography from the brand handoff
 public/images/bags/ stand-in product shots + CREDITS.md
 ```
+
+### The Register
+
+`/archive` is the one page with real interaction, and the concept is the
+subject rather than an effect: an archive has two natural ways of being
+looked at, so the page keeps both.
+
+- **Vitrine** — 3-up, not 4-up. Larger plates and more room, which is the
+  single clearest difference between a luxury catalogue and a product grid.
+- **Index** — a register: a line per piece (Nº, house, piece, retail,
+  status) with the photograph held in a sticky plate beside it. Hovering or
+  tabbing a row darkens the line, gives it a brass edge, and swaps the
+  plate. Below 1100px the plate has no column to live in, so it is dropped
+  and the register stands alone.
+
+Filters read as navigation rather than as a second interface: active
+choices stated in ink and underlined in brass, everything else receding,
+and a single reset that only appears once something is actually filtered.
+Filter state survives switching views.
+
+Rows link to `/archive/{ref}`, which does not exist yet — they land on the
+brand-styled 404 by design, and being links is what makes the register
+keyboard-navigable.
 
 ### Page width
 

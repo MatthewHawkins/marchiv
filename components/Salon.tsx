@@ -37,7 +37,7 @@ export function Salon() {
         </div>
 
         <div className={styles.figure}>
-          <Arch className={styles.arch} data-reveal="arch">
+          <Arch className={styles.arch}>
             <Image
               src={asset("/images/arch-door.jpg")}
               alt="The salon's arched door, standing open to the street"

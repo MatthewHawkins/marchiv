@@ -1,48 +1,92 @@
 .section {
-  padding: var(--section-y) var(--gutter) clamp(3.25rem, 6.1vw, 5.5rem);
+  padding: var(--section-y) var(--gutter);
+}
+
+.inner {
+  max-width: var(--max-page);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+
+/* The room holds still while the sequence passes it. */
+.figure {
+  position: sticky;
+  top: clamp(3.5rem, 10vh, 7rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-s);
+}
+
+.arch {
+  --arch-ar: 0.96;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 54%;
+}
+
+.figureCaption {
+  color: var(--ink-muted);
+}
+
+.sequence {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--t-section);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--gap-l);
+  text-wrap: balance;
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gap-xl);
-  max-width: var(--max-page);
-  margin-inline: auto;
-}
-
-.step {
   display: flex;
   flex-direction: column;
-  gap: 1.125rem;
 }
 
-/* Three steps, set as three steps: each column starts lower than the last,
-   so the eye walks down them. The offset encodes the sequence the numerals
-   already name — it is not decoration. */
-@media (min-width: 900px) {
-  .steps > *:nth-child(2) {
-    margin-top: clamp(1.5rem, 3.1vw, 2.75rem);
-  }
-  .steps > *:nth-child(3) {
-    margin-top: clamp(3rem, 6.2vw, 5.5rem);
-  }
+/* Each step occupies enough height for the held image to read as held. */
+.step {
+  display: grid;
+  /* Fixed, not auto: each step is its own grid, so an auto column sizes to
+     that step's own numeral and the titles step rightwards from I. to III. */
+  grid-template-columns: clamp(3rem, 5vw, 4.5rem) minmax(0, 1fr);
+  column-gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  row-gap: 0.625rem;
+  align-content: start;
+  /* Fixed rather than viewport-relative: the sequence needs to be taller
+     than the held image for sticky to have any travel, and tying that to
+     viewport height makes the rhythm collapse on a short laptop and
+     balloon on a tall monitor. */
+  min-height: 20rem;
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-/* The step niche: an outlined arch, 120 x 160, with a Roman numeral. */
-.niche {
-  --arch-ar: 0.75;
-  width: 120px;
-  background: none;
-  border: var(--hairline) solid var(--brass);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* The last step needs no run-out — its min-height would only leave a void
+   between the sequence and the next section. */
+.step:last-child {
+  min-height: 0;
 }
 
+/* Cormorant, not the didone: Bodoni's `I` is a bare vertical stroke and at
+   this size in brass it reads as a rule rather than a numeral. The trailing
+   point is what makes it legible as an ordinal. */
 .numeral {
+  /* Row 1 only, sharing the title's baseline — spanning both rows left the
+     numeral floating below the title it belongs to, since a 52px face and a
+     30px face set at the same box top do not share a baseline. */
+  grid-row: 1;
+  align-self: baseline;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: var(--t-numeral);
+  font-size: clamp(2.25rem, 3.6vw, 3.25rem);
   line-height: 1;
   color: var(--brass);
 }
@@ -52,25 +96,57 @@
   font-weight: 400;
   font-size: var(--t-card);
   line-height: var(--lh-tight);
+  align-self: baseline;
+  grid-column: 2;
+  text-wrap: balance;
 }
 
+/* Explicitly in column 2. With the numeral no longer spanning both rows,
+   row 2 column 1 is free and the paragraph auto-places into it — under the
+   numeral, in a column sized to the numeral. */
 .body {
+  grid-column: 2;
   font-size: var(--t-body);
   line-height: var(--lh-body);
   color: var(--ink-secondary);
-  max-width: 340px;
+  max-width: 44ch;
   text-wrap: pretty;
 }
 
 @media (max-width: 899px) {
-  .steps {
+  .inner {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--gap-l);
+    gap: var(--gap-xl);
   }
-  .steps > * {
-    margin-top: 0;
+  /* Sticky needs a column taller than the viewport to have anything to do. */
+  .figure {
+    position: static;
   }
+  .arch {
+    --arch-ar: 1.15;
+  }
+  .step {
+    min-height: 0;
+    padding-block: var(--gap-l);
+  }
+  .heading {
+    margin-bottom: var(--gap-s);
+  }
+}
+
+@media (max-width: 599px) {
+  .arch {
+    --arch-ar: 0.95;
+  }
+  .step {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+  }
+  .numeral {
+    grid-row: auto;
+  }
+  .title,
   .body {
-    max-width: 48ch;
+    grid-column: 1;
   }
 }
