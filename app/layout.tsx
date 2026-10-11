@@ -3,14 +3,20 @@ import { Bodoni_Moda, Cormorant_Garamond, Jost } from "next/font/google";
 import { isPreviewDeploy } from "@/lib/asset";
 import "./tokens.css";
 import "./globals.css";
+import "./motion.css";
 
 /* next/font is a compile-time transform, so every option must be a literal —
    no shared constants, no spread. `latin-ext` carries the Czech diacritics
    (č ř ž ě ů ť ď ň) the brand needs once the CZ copy lands; without it they
    fall back to a system face and break the setting. */
 
+/* Bodoni Moda carries an optical-size axis. next/font ships weight only
+   unless asked, so without this the wordmark at 28px renders with the same
+   master as 11px body text — the hairlines come out too fine and the
+   contrast too brittle at display size. */
 const bodoni = Bodoni_Moda({
   subsets: ["latin", "latin-ext"],
+  axes: ["opsz"],
   variable: "--font-bodoni",
   display: "swap",
 });

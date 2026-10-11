@@ -3,19 +3,24 @@ import { asset } from "@/lib/asset";
 import { routes } from "@/lib/routes";
 import { Arch } from "./ui/Arch";
 import { Kicker } from "./ui/Kicker";
+import { Line } from "./ui/Line";
 import { TextLink } from "./ui/TextLink";
 import styles from "./Salon.module.css";
 
 export function Salon() {
   return (
-    <section className={styles.section} aria-labelledby="the-salon">
+    <section
+      className={`${styles.section} grained`}
+      aria-labelledby="the-salon"
+    >
       <div className={styles.inner}>
         <div className={styles.copy}>
           <Kicker className={styles.kicker}>The salon · Malá Strana</Kicker>
-          <h2 id="the-salon" className={styles.headline}>
-            The door is open.
-            <br />
-            <em>Come under the vault.</em>
+          <h2 id="the-salon" className={styles.headline} data-reveal="lines">
+            <Line>The door is open.</Line>
+            <Line>
+              <em>Come under the vault.</em>
+            </Line>
           </h2>
           <p className={styles.body}>
             Visits by appointment, Tuesday to Saturday. A glass of something, a
@@ -32,7 +37,7 @@ export function Salon() {
         </div>
 
         <div className={styles.figure}>
-          <Arch className={styles.arch}>
+          <Arch className={styles.arch} data-reveal="arch">
             <Image
               src={asset("/images/arch-door.jpg")}
               alt="The salon's arched door, standing open to the street"

@@ -1,14 +1,31 @@
+.section {
+  padding: var(--section-y) var(--gutter) clamp(3.25rem, 6.1vw, 5.5rem);
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gap-xl);
-  padding: var(--section-y) var(--gutter) clamp(3.25rem, 6.1vw, 5.5rem);
+  max-width: var(--max-page);
+  margin-inline: auto;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   gap: 1.125rem;
+}
+
+/* Three steps, set as three steps: each column starts lower than the last,
+   so the eye walks down them. The offset encodes the sequence the numerals
+   already name — it is not decoration. */
+@media (min-width: 900px) {
+  .steps > *:nth-child(2) {
+    margin-top: clamp(1.5rem, 3.1vw, 2.75rem);
+  }
+  .steps > *:nth-child(3) {
+    margin-top: clamp(3rem, 6.2vw, 5.5rem);
+  }
 }
 
 /* The step niche: an outlined arch, 120 x 160, with a Roman numeral. */
@@ -49,6 +66,9 @@
   .steps {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--gap-l);
+  }
+  .steps > * {
+    margin-top: 0;
   }
   .body {
     max-width: 48ch;

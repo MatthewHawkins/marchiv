@@ -97,12 +97,33 @@
      indents the content twice. */
   --max-shell: calc(var(--max-page) + 2 * var(--gutter));
 
+  /* ---- Surface ----------------------------------------------------------
+     Desaturated fractal noise, used as a background layer blended with
+     `overlay` so mid-grey is the neutral point and the field keeps its
+     exact colour while gaining a tooth. Applied under content, never over
+     it — grain across photography reads as a damaged image, not as film. */
+  --grain: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='200'%3E%3Cfilter%20id='g'%20color-interpolation-filters='sRGB'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.72'%20numOctaves='4'%20stitchTiles='stitch'%20result='n'/%3E%3CfeColorMatrix%20in='n'%20type='saturate'%20values='0'%20result='g'/%3E%3CfeComponentTransfer%20in='g'%3E%3CfeFuncA%20type='table'%20tableValues='1%201'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width='200'%20height='200'%20filter='url%28%23g%29'/%3E%3C/svg%3E");
+  --grain-size: 200px 200px;
+
   /* ---- Shape ------------------------------------------------------------
      No border radius anywhere EXCEPT the arch. No shadows. */
   --hairline: 1px;
   --hairline-thick: 1.5px;
 
-  /* ---- Motion ---------------------------------------------------------- */
+  /* ---- Motion ----------------------------------------------------------
+     --ease-enter arrives with energy and decelerates into place; it is the
+     curve that separates composed motion from generic motion. Reveals are
+     long and quiet because the brand never hurries. */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 180ms;
+  --dur-hover: 560ms;
+  --dur-reveal: 1100ms;
+
+  /* ---- Page edge --------------------------------------------------------
+     Distance from a full-width band's edge to the page's content vertical.
+     Lets a band bleed an image off the viewport while its copy stays on the
+     grid. Resolve inside a full-width element — `100%` there is the viewport
+     minus the scrollbar, which `100vw` is not. */
+  --edge: max(var(--gutter), calc((100% - var(--max-page)) / 2));
 }

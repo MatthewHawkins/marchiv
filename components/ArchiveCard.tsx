@@ -15,7 +15,7 @@ type ArchiveCardProps = {
 export function ArchiveCard({ bag, priority = false }: ArchiveCardProps) {
   return (
     <article className={styles.card}>
-      <Arch className={styles.frame}>
+      <Arch className={styles.frame} data-reveal="arch">
         <Image
           src={asset(bag.image.src)}
           alt={bag.image.alt}

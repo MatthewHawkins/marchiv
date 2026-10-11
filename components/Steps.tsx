@@ -21,21 +21,23 @@ const steps = [
 
 export function Steps() {
   return (
-    <section className={styles.steps} aria-labelledby="how-it-works">
+    <section className={styles.section} aria-labelledby="how-it-works">
       <h2 id="how-it-works" className="srOnly">
         How lending works
       </h2>
-      {steps.map((step) => (
+      <div className={styles.steps}>
+        {steps.map((step) => (
         <div key={step.numeral} className={styles.step}>
-          <Arch className={styles.niche}>
+          <Arch className={styles.niche} data-reveal="arch">
             <span className={styles.numeral} aria-hidden="true">
               {step.numeral}
             </span>
           </Arch>
           <h3 className={styles.title}>{step.title}</h3>
           <p className={styles.body}>{step.body}</p>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

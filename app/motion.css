@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Motion.
+
+   Entirely additive. Every rule sits behind `prefers-reduced-motion` and,
+   where it is scroll-linked, `@supports (animation-timeline: view())`.
+   Firefox still ships that behind a flag, so a meaningful share of visitors
+   get the static page — which must therefore be the correct, finished page.
+   Nothing here hides content that CSS alone would not bring back.
+
+   Delete this file and the site is unchanged but still.
+   ========================================================================== */
+
+/* Registered so it can be interpolated; lets the reveal drive scale through
+   a variable instead of `transform`, leaving transform free for parallax. */
+@property --img-scale {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---- Reveals that follow the scroll --------------------------------- */
+  @supports (animation-timeline: view()) {
+    /* The arch clips open from its base while the photograph settles back
+       to 1. The counter-motion reads as a lens pulling focus rather than a
+       flat wipe — and because the crown of the arch arrives last, the shape
+       rises into place, which is what an arch should do. */
+    [data-reveal="arch"] {
+      animation: arch-open both var(--ease-enter);
+      animation-timeline: view();
+      animation-range: entry 4% entry 58%;
+    }
+
+    [data-reveal="arch"] img {
+      --img-scale: 1;
+      transform: scale(var(--img-scale));
+      animation: arch-settle both var(--ease-enter);
+      animation-timeline: view();
+      animation-range: entry 4% entry 88%;
+    }
+
+    /* Big photography drifts instead, at a differential small enough that
+       noticing it would mean it was overdone. */
+    [data-parallax] img {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    /* Hairlines draw in from the left. The whole design is hairlines, so
+       this is the one flourish that is unmistakably on-brand. */
+    [data-rule]::before {
+      animation: rule-draw both var(--ease-enter);
+      animation-timeline: view();
+      animation-range: entry 15% entry 65%;
+    }
+
+    /* Lines of a headline rise out of their own mask, staggered by shifting
+       each line's range rather than by delay — delays do nothing on a
+       scroll timeline. */
+    [data-reveal="lines"] .lineInner {
+      animation: line-rise both var(--ease-enter);
+      animation-timeline: view();
+      animation-range: entry 2% entry 48%;
+    }
+    [data-reveal="lines"] .line:nth-child(2) .lineInner {
+      animation-range: entry 11% entry 60%;
+    }
+    [data-reveal="lines"] .line:nth-child(3) .lineInner {
+      animation-range: entry 20% entry 72%;
+    }
+
+    /* Quiet arrival for supporting copy and controls. */
+    [data-reveal="rise"] {
+      animation: rise both var(--ease-enter);
+      animation-timeline: view();
+      animation-range: entry 8% entry 55%;
+    }
+  }
+
+  /* ---- The hero, which is already in view on load ----------------------
+     A scroll timeline would report it as finished, so this one is timed.
+     Stagger is in reading order: label, first line, second line, then the
+     aside — one thing at a time reads as a story. */
+  [data-reveal="lines-load"] .lineInner {
+    animation: line-rise var(--dur-reveal) var(--ease-enter) both;
+  }
+  [data-reveal="lines-load"] .line:nth-child(2) .lineInner {
+    animation-delay: 120ms;
+  }
+
+  [data-reveal="load"] {
+    animation: rise 900ms var(--ease-enter) both;
+    animation-delay: var(--load-delay, 0ms);
+  }
+}
+
+/* ---- Line masking ------------------------------------------------------
+   Structural, not motion: the mask must exist whether or not anything
+   animates, or the lines would shift when motion is disabled. */
+.line {
+  display: block;
+  overflow: hidden;
+  /* Descenders would otherwise be clipped by the mask. */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.lineInner {
+  display: block;
+  will-change: transform;
+}
+
+/* ---- Keyframes --------------------------------------------------------- */
+@keyframes arch-open {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes arch-settle {
+  from {
+    --img-scale: 1.18;
+  }
+  to {
+    --img-scale: 1;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(-6%) scale(1.13);
+  }
+  to {
+    transform: translateY(6%) scale(1.13);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes line-rise {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

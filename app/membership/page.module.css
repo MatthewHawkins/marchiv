@@ -13,10 +13,6 @@
   background: var(--vault-cream);
 }
 
-.ruled {
-  border-top: var(--hairline) solid var(--espresso);
-}
-
 /* --- Opening statement ---------------------------------------------------- */
 .intro {
   display: flex;
@@ -80,6 +76,21 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--gap-xl);
   row-gap: 0.875rem;
+  --arch-ar: 0.75;
+}
+
+/* The arches climb with the tier: Salon the lowest window, Trezor the
+   tallest, all three hung from one sill. The ladder is the information. */
+@media (min-width: 900px) {
+  .closets > *:nth-child(1) {
+    --arch-ar: 0.86;
+  }
+  .closets > *:nth-child(2) {
+    --arch-ar: 0.74;
+  }
+  .closets > *:nth-child(3) {
+    --arch-ar: 0.63;
+  }
 }
 
 /* One row of three, so names, allowances and prices sit on shared baselines
@@ -93,6 +104,11 @@
       grid-template-rows: subgrid;
       grid-row: span 5;
     }
+    /* Hang the unequal arches from a common sill. Scoped to the subgrid
+       context — in the flex fallback align-self works on the inline axis. */
+    .closets > .closet > *:first-child {
+      align-self: end;
+    }
   }
 }
 
@@ -103,7 +119,7 @@
 }
 
 .closetArch {
-  --arch-ar: 0.75;
+  /* ratio comes from .closets, which varies it per tier */
 }
 
 .closetImage {
@@ -137,7 +153,7 @@
   font-size: var(--t-body);
   font-variant-numeric: tabular-nums;
   padding-top: 0.875rem;
-  border-top: var(--hairline) solid var(--brass);
+  --rule-ink: var(--brass);
 }
 
 /* --- Comparison ----------------------------------------------------------- */
@@ -418,8 +434,6 @@
   .closets {
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--gap-xl);
-  }
-  .closetArch {
     --arch-ar: 1.1;
   }
 }
@@ -428,7 +442,7 @@
   .included {
     grid-template-columns: minmax(0, 1fr);
   }
-  .closetArch {
+  .closets {
     --arch-ar: 0.85;
   }
 }

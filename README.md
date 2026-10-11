@@ -106,6 +106,55 @@ Two tokens, and mixing them up indents content twice:
 Get this right and every page's content sits on one vertical — nav, body and
 footer — at any viewport width.
 
+### Motion and texture
+
+`app/motion.css` holds every animation and is **entirely additive**. Each
+rule sits behind `prefers-reduced-motion`, and each scroll-linked rule also
+behind `@supports (animation-timeline: view())` — Firefox still ships that
+flagged, so a real share of visitors get the static page. That page must
+therefore be the finished page: nothing here hides content that CSS alone
+would not bring back. Delete the file and the site is unchanged but still.
+
+What moves, and why:
+
+- **Arches clip open from the base while the photograph counter-scales
+  1.18 → 1.** The counter-motion reads as a lens pulling focus rather than
+  a flat wipe, and because the crown arrives last the shape rises into
+  place — which is what an arch should do.
+- **Headlines rise line by line** out of their own mask. The mask is
+  structural, so disabling motion changes the timing and never the setting.
+  Stagger is done by offsetting each line's `animation-range`; delays do
+  nothing on a scroll timeline.
+- **Hairlines draw in from the left.** The whole design is hairlines, so
+  it's the one flourish that is unmistakably on-brand.
+- **Big photography drifts** at a differential small enough that noticing
+  it would mean it was overdone.
+
+`--ease-enter` (`cubic-bezier(0.16, 1, 0.3, 1)`) is the enter curve
+throughout: arrive with energy, decelerate into place.
+
+Texture comes from `--grain`, desaturated fractal noise from an inline SVG
+filter. It is a **background layer blended with `overlay`**, not an overlay
+on top: mid-grey is overlay's neutral point, so a field keeps its exact
+colour while gaining a tooth. Put it on a surface with `.grained` alongside
+a background-color. It must stay under content — grain across photography
+reads as a damaged image rather than as film.
+
+### Structure
+
+The section rhythm deliberately avoids equal stacked blocks. Each break is
+tied to something true about the content rather than applied for variety:
+
+- **Archive windows are unequal heights on a common sill** — four identical
+  arches read as a product grid; four of differing height read as a wall of
+  windows.
+- **The three steps descend**, so the eye walks down them.
+- **Tier arches climb with the tier** — Salon lowest, Trezor tallest. The
+  ladder is the information.
+- **The salon arch breaks its band**, its crown rising out of the top edge
+  into the section above. It is bottom-aligned, so if the copy ever grows
+  taller the arch protrudes less rather than detaching from the edge.
+
 ### The arch
 
 The brand has exactly one shape: a rectangle whose top is a true semicircle

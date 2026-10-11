@@ -111,3 +111,32 @@ button {
   white-space: nowrap;
   border: 0;
 }
+
+/* ==========================================================================
+   Texture and shared structure
+   ========================================================================== */
+
+/* Flat fields carry a tooth. `.grained` pairs with a background-color on
+   the same element; the noise layer blends into it and sits beneath all
+   content, so images paint over it untouched. */
+.grained,
+body {
+  background-image: var(--grain);
+  background-size: var(--grain-size);
+  background-blend-mode: overlay;
+}
+
+/* A hairline as a real element rather than a border, so it can be drawn in.
+   Sits at scaleX(1) unless app/motion.css animates it. */
+[data-rule] {
+  position: relative;
+}
+
+[data-rule]::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--hairline);
+  background: var(--rule-ink, var(--espresso));
+  transform-origin: left center;
+}

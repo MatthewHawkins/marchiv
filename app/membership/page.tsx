@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { Nav } from "@/components/Nav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Arch } from "@/components/ui/Arch";
 import { Button } from "@/components/ui/Button";
 import { Kicker } from "@/components/ui/Kicker";
+import { Line } from "@/components/ui/Line";
 import { asset } from "@/lib/asset";
 import { formatEur, tierLabel } from "@/lib/format";
 import {
@@ -34,12 +36,13 @@ export default function MembershipPage() {
           <div className={styles.inner}>
             <div className={styles.intro}>
               <Kicker className={styles.kicker}>Membership</Kicker>
-              <h1 className={styles.headline}>
-                Three keys to
-                <br />
-                <em>the same archive.</em>
+              <h1 className={styles.headline} data-reveal="lines-load">
+                <Line>Three keys to</Line>
+                <Line>
+                  <em>the same archive.</em>
+                </Line>
               </h1>
-              <p className={styles.lede}>
+              <p className={styles.lede} data-reveal="load" style={{ "--load-delay": "380ms" } as CSSProperties}>
                 Every tier draws on one archive and one standard of care. What
                 changes is how much of the house opens to you — and how often
                 you may change your mind.
@@ -50,7 +53,8 @@ export default function MembershipPage() {
 
         {/* Each tier is named for a room, so each is shown as that room. */}
         <section
-          className={`${styles.band} ${styles.ruled}`}
+          className={styles.band}
+          data-rule=""
           aria-labelledby="closets"
         >
           <div className={styles.inner}>
@@ -66,7 +70,7 @@ export default function MembershipPage() {
             <div className={styles.closets}>
               {memberships.map((m, i) => (
                 <article key={m.tier} className={styles.closet}>
-                  <Arch className={styles.closetArch}>
+                  <Arch className={styles.closetArch} data-reveal="arch">
                     <Image
                       src={asset(m.image.src)}
                       alt={m.image.alt}
@@ -90,7 +94,7 @@ export default function MembershipPage() {
         </section>
 
         <section
-          className={`${styles.band} ${styles.cream}`}
+          className={`${styles.band} ${styles.cream} grained`}
           aria-labelledby="comparison"
         >
           <div className={styles.inner}>
@@ -141,7 +145,7 @@ export default function MembershipPage() {
           </div>
         </section>
 
-        <section className={styles.quote}>
+        <section className={styles.quote} data-parallax="">
           <Image
             src={asset("/images/facade-stucco.jpg")}
             alt=""
@@ -153,7 +157,7 @@ export default function MembershipPage() {
           <div className={styles.quoteScrim} />
           <div className={`${styles.inner} ${styles.quoteInner}`}>
             <Kicker className={styles.quoteKicker}>The house</Kicker>
-            <p className={styles.quoteText}>
+            <p className={styles.quoteText} data-reveal="rise">
               Everything here is for carrying. Some of it, eventually, is for
               keeping.
             </p>
@@ -184,7 +188,8 @@ export default function MembershipPage() {
         </section>
 
         <section
-          className={`${styles.band} ${styles.ruled}`}
+          className={styles.band}
+          data-rule=""
           aria-labelledby="questions"
         >
           <div className={styles.inner}>
@@ -205,16 +210,24 @@ export default function MembershipPage() {
           </div>
         </section>
 
-        <section className={styles.invitation} aria-labelledby="apply">
+        <section
+          className={`${styles.invitation} grained`}
+          aria-labelledby="apply"
+        >
           <div className={styles.invitationInner}>
             <div className={styles.invitationCopy}>
               <Kicker className={styles.invitationKicker}>
                 By application · Praha 1
               </Kicker>
-              <h2 id="apply" className={styles.invitationHeadline}>
-                Tell us what you
-                <br />
-                <em>like to carry.</em>
+              <h2
+                id="apply"
+                className={styles.invitationHeadline}
+                data-reveal="lines"
+              >
+                <Line>Tell us what you</Line>
+                <Line>
+                  <em>like to carry.</em>
+                </Line>
               </h2>
               <p className={styles.invitationBody}>
                 We read every application ourselves and reply within a few days.
@@ -232,7 +245,7 @@ export default function MembershipPage() {
             </div>
 
             <div className={styles.invitationFigure}>
-              <Arch className={styles.invitationArch}>
+              <Arch className={styles.invitationArch} data-reveal="arch">
                 <Image
                   src={asset("/images/facade-cream.jpg")}
                   alt="The house on Mostecká, seen from the street"

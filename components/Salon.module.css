@@ -57,11 +57,18 @@
   padding-top: 0.5rem;
 }
 
-/* The arch is bottom-flush so it reads as rising out of the band's edge. */
+/* The arch stays bottom-flush with the band, but its crown now rises out of
+   the top edge into the section above — the one element on the page that
+   refuses to stay inside its block. Bottom-aligned, so if the copy ever
+   grows taller than the figure the arch simply protrudes less rather than
+   detaching from the band's edge. */
 .figure {
   display: flex;
   align-items: flex-end;
-  padding-top: var(--section-y);
+  padding-top: 0;
+  margin-top: calc(var(--section-y) * -0.62);
+  position: relative;
+  z-index: 1;
 }
 
 .arch {
@@ -84,7 +91,7 @@
     padding-bottom: clamp(2rem, 5vw, 3rem);
   }
   .figure {
-    padding-top: 0;
+    margin-top: 0;
     justify-content: center;
   }
   .arch {

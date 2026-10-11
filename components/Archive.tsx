@@ -7,7 +7,10 @@ import styles from "./Archive.module.css";
 
 export function Archive() {
   return (
-    <section className={styles.section} aria-labelledby="from-the-archive">
+    <section
+      className={`${styles.section} grained`}
+      aria-labelledby="from-the-archive"
+    >
       <div className={styles.inner}>
         <div className={styles.header}>
           <div className={styles.heading}>

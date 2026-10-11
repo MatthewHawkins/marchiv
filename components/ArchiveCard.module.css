@@ -4,9 +4,9 @@
   gap: var(--gap-xs);
 }
 
-/* 3:4 arch — the archive's row of windows. */
+/* The archive's row of windows. The ratio is set by the grid, not here —
+   the windows are deliberately unequal heights. */
 .frame {
-  --arch-ar: 0.75;
   --arch-bg: var(--plaster);
 }
 
